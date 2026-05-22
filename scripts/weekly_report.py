@@ -49,7 +49,7 @@ def get_post_insights(media_id: str, media_type: str, page_token: str) -> dict:
     else:
         metrics = "impressions,reach,shares,saved,total_interactions"
 
-    params = {"metric": metrics, "access_token": page_token}
+    params = {"metric": metrics, "period": "lifetime", "access_token": page_token}
     resp = requests.get(url, params=params, timeout=30)
 
     if resp.status_code != 200:
@@ -141,6 +141,8 @@ def main() -> None:
                 "media_type": post.get("media_type"),
                 "timestamp": post.get("timestamp"),
                 "permalink": post.get("permalink"),
+                "likes": post.get("like_count", 0),
+                "comments": post.get("comments_count", 0),
                 "insights": insights,
             }
         )
