@@ -49,11 +49,12 @@ def get_post_insights(media_id: str, media_type: str, page_token: str) -> dict:
     else:
         metrics = "impressions,reach,shares,saved,total_interactions"
 
-    params = {"metric": metrics, "period": "lifetime", "access_token": page_token}
+    params = {"metric": metrics, "period": "lifetime", "access_token": IG_ACCESS_TOKEN}
     resp = requests.get(url, params=params, timeout=30)
 
+    print(f"Insights for {media_id}: status={resp.status_code} body={resp.text[:300]}")
+
     if resp.status_code != 200:
-        print(f"Insights warning for {media_id}: {resp.status_code} — {resp.text[:200]}")
         return {}
 
     insights = {}
