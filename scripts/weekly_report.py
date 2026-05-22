@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import requests
 from datetime import datetime, timedelta, timezone
 import anthropic
@@ -102,12 +103,21 @@ Write a sharp weekly report. Structure it exactly like this:
 
 Rules: no fluff, no vague advice, no motivation speech. Be brutally honest and specific. Format for Telegram using *bold* for section headers."""
 
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=1500,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return message.content[0].text
+    for attempt in range(4):
+        try:
+            message = client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=1500,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return message.content[0].text
+        except anthropic.APIStatusError as e:
+            if e.status_code == 529 and attempt < 3:
+                wait = 20 * (attempt + 1)
+                print(f"Claude overloaded, retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 def send_telegram(text: str) -> None:
