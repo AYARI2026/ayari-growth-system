@@ -11,24 +11,25 @@ TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 # ANTHROPIC_API_KEY is picked up automatically by the anthropic library
 
 
-def get_ig_user_id() -> str:
+def get_ig_account_info() -> tuple[str, str]:
+    """Returns (ig_user_id, page_access_token)"""
     url = "https://graph.facebook.com/v21.0/me/accounts"
-    params = {"fields": "instagram_business_account", "access_token": IG_ACCESS_TOKEN}
+    params = {"fields": "access_token,instagram_business_account", "access_token": IG_ACCESS_TOKEN}
     resp = requests.get(url, params=params, timeout=30)
     resp.raise_for_status()
     for page in resp.json().get("data", []):
         ig = page.get("instagram_business_account")
         if ig:
-            return ig["id"]
-    return IG_USER_ID
+            return ig["id"], page.get("access_token", IG_ACCESS_TOKEN)
+    return IG_USER_ID, IG_ACCESS_TOKEN
 
 
-def get_recent_posts(days: int = 7) -> list[dict]:
-    user_id = get_ig_user_id()
+def get_recent_posts(days: int = 7) -> tuple[list[dict], str]:
+    user_id, page_token = get_ig_account_info()
     url = f"https://graph.facebook.com/v21.0/{user_id}/media"
     params = {
-        "fields": "id,caption,media_type,timestamp,permalink",
-        "access_token": IG_ACCESS_TOKEN,
+        "fields": "id,caption,media_type,timestamp,permalink,like_count,comments_count",
+        "access_token": page_token,
         "limit": 30,
     }
     resp = requests.get(url, params=params, timeout=30)
@@ -36,26 +37,23 @@ def get_recent_posts(days: int = 7) -> list[dict]:
     posts = resp.json().get("data", [])
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
-    recent = []
-    for p in posts:
-        ts = datetime.fromisoformat(p["timestamp"].replace("Z", "+00:00"))
-        if ts >= cutoff:
-            recent.append(p)
-    return recent
+    recent = [p for p in posts if datetime.fromisoformat(p["timestamp"].replace("Z", "+00:00")) >= cutoff]
+    return recent, page_token
 
 
-def get_post_insights(media_id: str, media_type: str) -> dict:
+def get_post_insights(media_id: str, media_type: str, page_token: str) -> dict:
     url = f"https://graph.facebook.com/v21.0/{media_id}/insights"
 
     if media_type in ("VIDEO", "REEL"):
-        metrics = "impressions,reach,likes,comments,shares,saved,video_views,plays,total_interactions"
+        metrics = "impressions,reach,shares,saved,video_views,total_interactions"
     else:
-        metrics = "impressions,reach,likes,comments,shares,saved,total_interactions"
+        metrics = "impressions,reach,shares,saved,total_interactions"
 
-    params = {"metric": metrics, "access_token": IG_ACCESS_TOKEN}
+    params = {"metric": metrics, "access_token": page_token}
     resp = requests.get(url, params=params, timeout=30)
 
     if resp.status_code != 200:
+        print(f"Insights warning for {media_id}: {resp.status_code} — {resp.text[:200]}")
         return {}
 
     insights = {}
@@ -126,7 +124,7 @@ def send_telegram(text: str) -> None:
 
 def main() -> None:
     print("Fetching recent posts from @ayari.longevity...")
-    posts = get_recent_posts(days=7)
+    posts, page_token = get_recent_posts(days=7)
 
     if not posts:
         send_telegram("*AYARI Weekly Report*\n\nNo posts published in the last 7 days.")
@@ -136,7 +134,7 @@ def main() -> None:
     print(f"Found {len(posts)} posts. Fetching insights...")
     enriched = []
     for post in posts:
-        insights = get_post_insights(post["id"], post.get("media_type", "IMAGE"))
+        insights = get_post_insights(post["id"], post.get("media_type", "IMAGE"), page_token)
         enriched.append(
             {
                 "caption_preview": (post.get("caption") or "")[:200],
