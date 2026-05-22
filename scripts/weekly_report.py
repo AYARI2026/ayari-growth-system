@@ -44,12 +44,7 @@ def get_recent_posts(days: int = 7) -> tuple[list[dict], str]:
 def get_post_insights(media_id: str, media_type: str, media_product_type: str, page_token: str) -> dict:
     url = f"https://graph.facebook.com/v21.0/{media_id}/insights"
 
-    if media_product_type == "REEL":
-        metrics = "reach,saved,shares,plays,total_interactions"
-    elif media_type == "VIDEO":
-        metrics = "reach,saved,shares,plays,total_interactions"
-    else:
-        metrics = "reach,saved,shares,total_interactions"
+    metrics = "reach,saved,shares,total_interactions"
 
     params = {"metric": metrics, "period": "lifetime", "access_token": IG_ACCESS_TOKEN}
     resp = requests.get(url, params=params, timeout=30)
