@@ -28,7 +28,7 @@ def get_recent_posts(days: int = 7) -> tuple[list[dict], str]:
     user_id, page_token = get_ig_account_info()
     url = f"https://graph.facebook.com/v21.0/{user_id}/media"
     params = {
-        "fields": "id,caption,media_type,timestamp,permalink,like_count,comments_count",
+        "fields": "id,caption,media_type,media_product_type,timestamp,permalink,like_count,comments_count",
         "access_token": page_token,
         "limit": 30,
     }
@@ -41,20 +41,21 @@ def get_recent_posts(days: int = 7) -> tuple[list[dict], str]:
     return recent, page_token
 
 
-def get_post_insights(media_id: str, media_type: str, page_token: str) -> dict:
+def get_post_insights(media_id: str, media_type: str, media_product_type: str, page_token: str) -> dict:
     url = f"https://graph.facebook.com/v21.0/{media_id}/insights"
 
-    if media_type in ("VIDEO", "REEL"):
-        metrics = "impressions,reach,shares,saved,video_views,total_interactions"
+    if media_product_type == "REEL":
+        metrics = "reach,saved,shares,plays,total_interactions"
+    elif media_type == "VIDEO":
+        metrics = "reach,saved,shares,plays,total_interactions"
     else:
-        metrics = "impressions,reach,shares,saved,total_interactions"
+        metrics = "reach,saved,shares,total_interactions"
 
     params = {"metric": metrics, "period": "lifetime", "access_token": IG_ACCESS_TOKEN}
     resp = requests.get(url, params=params, timeout=30)
 
-    print(f"Insights for {media_id}: status={resp.status_code} body={resp.text[:300]}")
-
     if resp.status_code != 200:
+        print(f"Insights error {media_id}: {resp.status_code} — {resp.text[:200]}")
         return {}
 
     insights = {}
@@ -135,7 +136,7 @@ def main() -> None:
     print(f"Found {len(posts)} posts. Fetching insights...")
     enriched = []
     for post in posts:
-        insights = get_post_insights(post["id"], post.get("media_type", "IMAGE"), page_token)
+        insights = get_post_insights(post["id"], post.get("media_type", "IMAGE"), post.get("media_product_type", ""), page_token)
         enriched.append(
             {
                 "caption_preview": (post.get("caption") or "")[:200],
