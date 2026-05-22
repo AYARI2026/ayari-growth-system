@@ -11,8 +11,21 @@ TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 # ANTHROPIC_API_KEY is picked up automatically by the anthropic library
 
 
+def get_ig_user_id() -> str:
+    url = "https://graph.facebook.com/v21.0/me/accounts"
+    params = {"fields": "instagram_business_account", "access_token": IG_ACCESS_TOKEN}
+    resp = requests.get(url, params=params, timeout=30)
+    resp.raise_for_status()
+    for page in resp.json().get("data", []):
+        ig = page.get("instagram_business_account")
+        if ig:
+            return ig["id"]
+    return IG_USER_ID
+
+
 def get_recent_posts(days: int = 7) -> list[dict]:
-    url = f"https://graph.instagram.com/v21.0/{IG_USER_ID}/media"
+    user_id = get_ig_user_id()
+    url = f"https://graph.facebook.com/v21.0/{user_id}/media"
     params = {
         "fields": "id,caption,media_type,timestamp,permalink",
         "access_token": IG_ACCESS_TOKEN,
@@ -32,7 +45,7 @@ def get_recent_posts(days: int = 7) -> list[dict]:
 
 
 def get_post_insights(media_id: str, media_type: str) -> dict:
-    url = f"https://graph.instagram.com/v21.0/{media_id}/insights"
+    url = f"https://graph.facebook.com/v21.0/{media_id}/insights"
 
     if media_type in ("VIDEO", "REEL"):
         metrics = "impressions,reach,likes,comments,shares,saved,video_views,plays,total_interactions"
