@@ -103,18 +103,21 @@ Write a sharp weekly report. Structure it exactly like this:
 
 Rules: no fluff, no vague advice, no motivation speech. Be brutally honest and specific. Format for Telegram using *bold* for section headers."""
 
-    for attempt in range(4):
+    models = ["claude-sonnet-4-6", "claude-haiku-4-5-20251001"]
+    for attempt in range(5):
+        model = models[min(attempt // 2, len(models) - 1)]
         try:
+            print(f"Calling Claude ({model}, attempt {attempt + 1})...")
             message = client.messages.create(
-                model="claude-sonnet-4-6",
+                model=model,
                 max_tokens=1500,
                 messages=[{"role": "user", "content": prompt}],
             )
             return message.content[0].text
         except anthropic.APIStatusError as e:
-            if e.status_code == 529 and attempt < 3:
-                wait = 20 * (attempt + 1)
-                print(f"Claude overloaded, retrying in {wait}s...")
+            if e.status_code == 529 and attempt < 4:
+                wait = 15 * (attempt + 1)
+                print(f"Overloaded, retrying in {wait}s...")
                 time.sleep(wait)
             else:
                 raise
