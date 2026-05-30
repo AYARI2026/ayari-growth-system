@@ -1,0 +1,39 @@
+name: AYARI Post Daily
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_json:
+        description: "Post data as JSON string"
+        required: true
+      platforms:
+        description: "Platforms to post to"
+        required: false
+        default: "instagram"
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Write post JSON
+        run: echo '${{ github.event.inputs.post_json }}' > /tmp/post.json
+
+      - name: Publish post
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_CONTENT_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CONTENT_CHAT_ID }}
+          TIKTOK_ACCESS_TOKEN: ${{ secrets.TIKTOK_ACCESS_TOKEN }}
+        run: python scripts/post_publisher.py --post-json /tmp/post.json --platforms ${{ github.event.inputs.platforms }}

@@ -1,0 +1,204 @@
+{
+  "week_theme": "NAD+ & Zellenergie — Die Wissenschaft der Vitalität",
+  "week_theme_reason": "NMN+ ist das Flaggschiff-Produkt mit höchster Differenzierung (Uthever®, klinisch getestet). Eine fokussierte Woche zu Zellenergie, NAD+-Stoffwechsel und Performance schafft Awareness, Education und direkte Conversion-Chancen. Zeitlich perfekt für Juni (Sommerform-Mindset).",
+  "posts": [
+    {
+      "day": "Montag",
+      "date": "2026-06-01",
+      "format": "facts_reel",
+      "product_focus": null,
+      "content_type": "video",
+      "hook_text": "Warum deine Mitochondrien schneller altern als dein Körper",
+      "hook_caption": "Die meisten Defizite entstehen nicht im Gym — sie entstehen in deinen Zellen.",
+      "caption": "Deine Mitochondrien sind die Energiekraftwerke deines Körpers.\n\nAb 30+ sinkt deine NAD+-Konzentration um bis zu 50%.\n\nDas bedeutet:\n• Weniger Zellenergie\n• Langsamere Regeneration\n• Weniger Fokus & mentale Klarheit\n\nDie gute Nachricht: NAD+ kann man gezielt unterstützen.\n\nMehr dazu im nächsten Post.",
+      "hashtags": [
+        "#NAD+",
+        "#Mitochondrien",
+        "#Longevity",
+        "#Zellenergie",
+        "#AyariLongevity",
+        "#Biohacking"
+      ],
+      "manychat_keyword": null,
+      "script_lines": [
+        "NAD+ — drei Buchstaben, die dein ganzes Leben verändern können.",
+        "Mit 30 Jahren fällt es um 50%. Mit 60 um 80%.",
+        "Das ist keine Meinung. Das ist Biochemie.",
+        "Und ja — du kannst dagegen etwas tun."
+      ],
+      "thumbnail_prompt": "Split-screen: links junges Mitochondrium (leuchtend, energiegeladen), rechts altes Mitochondrium (matter, erschöpft). Dazwischen ein fallender NAD+-Balken. Farben: Neon-Grün vs. Grau. Wissenschaftlich, modern, dramatisch.",
+      "needs_jasmin_video": true,
+      "newsletter_topic": null,
+      "posting_time": "09:00",
+      "priority": "high"
+    },
+    {
+      "day": "Dienstag",
+      "date": "2026-06-02",
+      "format": "ugc",
+      "product_focus": "NMN+",
+      "content_type": "image",
+      "hook_text": "Nach 4 Wochen NMN+ — das hat sich wirklich verändert",
+      "hook_caption": "Echte Story von einer unserer Community-Mitglieder (25, Consultant)",
+      "caption": "\"Ich dachte, Müdigkeit ist normal mit meinem Job.\n\nNach 2 Wochen NMN+: mentale Klarheit, die ich 5 Jahre nicht hatte.\n\nNach 4 Wochen: Ich merke, wie sich meine Regeneration verändert. Weniger Kopfschmerzen. Besserer Schlaf.\n\nDas ist nicht Placebo — das ist Zellbiologie.\"\n\n— Anna M., Berlin\n\nDeine Geschichte könnte nächste Woche hier stehen.",
+      "hashtags": [
+        "#RealResults",
+        "#NMN",
+        "#Vitalität",
+        "#AyariCommunity",
+        "#AyariLongevity"
+      ],
+      "manychat_keyword": null,
+      "script_lines": null,
+      "thumbnail_prompt": "Portrait-Style UGC: junge Frau (25-30), natürliche Ausstrahlung, hält NMN+-Pulver-Packung, Lächeln, helles Licht, moderne Küche im Hintergrund. Authentisch, nicht inszeniert. Farben: Warm, vertrauensvoll.",
+      "needs_jasmin_video": false,
+      "newsletter_topic": null,
+      "posting_time": "10:30",
+      "priority": "high"
+    },
+    {
+      "day": "Mittwoch",
+      "date": "2026-06-03",
+      "format": "expert_reel",
+      "product_focus": "NMN+",
+      "content_type": "video",
+      "hook_text": "Das einzige NMN das in Menschen getestet wurde",
+      "hook_caption": "Warum Uthever® nicht gleich Uthever® ist (und warum das wichtig ist)",
+      "caption": "NAD+ kann man nicht direkt supplementieren — es wird zu schnell abgebaut.\n\nDaher nutzt man NMN (Nicotinamid-Mononukleotid) als Precursor.\n\nABER: Nicht alle NMN sind gleich.\n\nUthever® ist die EINZIGE Form mit klinischen Humanstudien:\n• 99%+ Reinheit\n• Stabilität in der Zelle\n• Nachgewiesene NAD+-Erhöhung im Menschen\n\nDarum: NMN+ von AYARI nutzt 100% Uthever®.\n\nFür Fokus. Vitalität. Zellregeneration.",
+      "hashtags": [
+        "#NAD+",
+        "#NMN",
+        "#Uthever",
+        "#ScienceBacked",
+        "#AyariLongevity",
+        "#Longevity"
+      ],
+      "manychat_keyword": "LONGEVITY",
+      "script_lines": [
+        "Die meisten NMN-Supplemente? Billiges Pulver ohne Daten.",
+        "Uthever® ist anders — das ist die Marke, die die Studien gemacht hat.",
+        "Wenn du schon supplementierst, dann mit der Form, die tatsächlich Evidenz hat.",
+        "NMN+ von AYARI: 100% Uthever®. Punkt."
+      ],
+      "thumbnail_prompt": "Halbkörper-Shot: Jasmin vor unscharfem Labor-Hintergrund (Reagenzgläser, Mikroskop-Andeutung), hält NMN+-Flasche, fokussierter Blick, zeigt auf die Flasche. Wissenschaftlich, vertrauenswürdig, educativ. Farben: Grün-Gold-Weiß.",
+      "needs_jasmin_video": true,
+      "newsletter_topic": "Warum Uthever® die einzige NMN-Form ist, die zählt",
+      "posting_time": "11:00",
+      "priority": "high"
+    },
+    {
+      "day": "Donnerstag",
+      "date": "2026-06-04",
+      "format": "karussell",
+      "product_focus": "NMN+",
+      "content_type": "carousel",
+      "hook_text": "5 Zeichen dass dein NAD+ zu niedrig ist",
+      "hook_caption": "Erkennst du dich in mehreren wieder?",
+      "caption": "Slide 1: Hook — \"5 Zeichen eines niedrigen NAD+-Levels\"\n\nSlide 2: \"Chronische Müdigkeit — auch nach 8h Schlaf?\"\n\nSlide 3: \"Mentale Nebel — Konzentration fällt schwer, besonders nachmittags?\"\n\nSlide 4: \"Langsamere Regeneration — Muskelkater hält länger an?\"\n\nSlide 5: \"Schlafqualität leidet — eingesclafen ist easy, durchschlafen ist schwer?\"\n\nSlide 6: \"Recovery nach Training fühlt sich zäh an?\"\n\nSlide 7: [NMN+-Produktbild mit ManyChat Keyword] \"Wenn 3+ zutreffen: Dein NAD+ braucht Support. LONGEVITY schreiben für Infos.\"",
+      "hashtags": [
+        "#NAD+",
+        "#Müdigkeit",
+        "#Longevity",
+        "#Performance",
+        "#AyariLongevity"
+      ],
+      "manychat_keyword": "LONGEVITY",
+      "script_lines": null,
+      "thumbnail_prompt": "Carousel-Titel-Card: Dark-Modus, großer Text \"NAD+ zu niedrig?\", 5 kleine Icons drumherum (Müdigkeit-Icon, Gehirn-Icon, Muskel-Icon, Mond-Icon, Erholung-Icon). Farben: Dunkelblau, Neon-Grün, Weiß. Modern, scanning-freundlich.",
+      "needs_jasmin_video": false,
+      "newsletter_topic": null,
+      "posting_time": "14:00",
+      "priority": "high"
+    },
+    {
+      "day": "Freitag",
+      "date": "2026-06-05",
+      "format": "facts_reel",
+      "product_focus": null,
+      "content_type": "video",
+      "hook_text": "Die eine Sache die NAD+ in 8 Wochen hebt",
+      "hook_caption": "Und nein, es ist nicht Fasten allein.",
+      "caption": "NAD+ lässt sich durch mehrere Dinge erhöhen:\n\n✗ Fasten — temporär, limitiert\n✗ Sport — temporal, strain-abhängig\n✗ Kalorienbeschränkung — nicht nachhaltig\n\n✓ NMN-Supplementation — wissenschaftlich getestet, konstant, nachhaltig\n\nABER: Der Hack ist die Kombination.\n\nNMN + Intermittent Fasting + Regulares Training = exponentieller NAD+-Anstieg.\n\nNMN allein? Schon gut.\nNMN im System? Transformativ.",
+      "hashtags": [
+        "#NAD+",
+        "#Biohacking",
+        "#Longevity",
+        "#Performance",
+        "#AyariLongevity",
+        "#Fasting"
+      ],
+      "manychat_keyword": null,
+      "script_lines": [
+        "NAD+ ist wie dein Cellphone-Akku — du kannst ihn aufladen oder du kannst ihn schneller entleeren.",
+        "Die meisten Menschen denken: Ich mache Sport, das reicht. Falsch.",
+        "NAD+ braucht direkte Unterstützung PLUS ein System, das es nutzen kann.",
+        "NMN ist der Fuel. Fasten & Training ist das Feuer."
+      ],
+      "thumbnail_prompt": "Dynamic split-screen: links Formel (E=mc², aber mit NAD+-Variablen), rechts Graphen-Verlauf (NAD+-Level steigt dramatisch). Feurig, wissenschaftlich, motivierend. Farben: Tiefschwarz, Neon-Orange, Weiß. Modern, snackbar.",
+      "needs_jasmin_video": true,
+      "newsletter_topic": null,
+      "posting_time": "09:00",
+      "priority": "high"
+    },
+    {
+      "day": "Samstag",
+      "date": "2026-06-06",
+      "format": "conversion_reel",
+      "product_focus": "NMN+",
+      "content_type": "video",
+      "hook_text": "Wie du NAD+ wieder auf 20-jähriges Level hebst",
+      "hook_caption": "Die 3-Schritte-Anleitung (wissenschaftlich backed)",
+      "caption": "Dein NAD+ ist gefallen.\n\nHier sind die 3 Schritte zur Reparatur:\n\n1️⃣ BASELINE: Uthever® NMN 500mg/Tag\n(Das ist die Dosis aus den Humanstudien)\n\n2️⃣ SYNERGY: 16-Stunden Fasting Window\n(Hebt NAD+ + Autophagie zusammen)\n\n3️⃣ CATALYST: Resistanz-Training 3x/Woche\n(Nutzt den NAD+ optimal)\n\n8-12 Wochen: merkbare Shift in Energie, Fokus, Recovery.\n\nNMN+ von AYARI: 100% Uthever®, Made in Germany, Premium-Qualität.\n\nLink in Bio — oder LONGEVITY schreiben.",
+      "hashtags": [
+        "#NAD+",
+        "#Longevity",
+        "#Biohacking",
+        "#Performance",
+        "#AyariLongevity",
+        "#ZellEnergie"
+      ],
+      "manychat_keyword": "LONGEVITY",
+      "script_lines": [
+        "Dein NAD+ fällt, das ist Fakt. Aber die Reparatur ist einfacher als du denkst.",
+        "Schritt 1: Die richtige Form NMN — das ist Uthever®.",
+        "Schritt 2: Ein Fenster, in dem dein Körper das auch nutzen kann — Fasting.",
+        "Schritt 3: Training, das den NAD+-Stimulus setzt.",
+        "8 Wochen. Das ist die Timeline bis du es merkst."
+      ],
+      "thumbnail_prompt": "Vor/Nach-Style: links (matter, erschöpft) vs. rechts (leuchtend, energiegeladen), Jasmin-Split auf der Grenze. Große Nummern \"1 2 3\" dazwischen. Farben: Links Grau, rechts Neon-Grün. Motivierend, Conversion-orientiert.",
+      "needs_jasmin_video": true,
+      "newsletter_topic": "Die NAD+-Reparatur: Das wissenschaftliche 3-Schritt-System",
+      "posting_time": "17:00",
+      "priority": "high"
+    },
+    {
+      "day": "Sonntag",
+      "date": "2026-06-07",
+      "format": "single_post",
+      "product_focus": null,
+      "content_type": "image",
+      "hook_text": "Was Jasmin diese Woche gelernt hat",
+      "hook_caption": "Über Zellenergie, Geduld und warum der 'Quick Fix' nie funktioniert.",
+      "caption": "Diese Woche habe ich mit vielen von euch über NAD+ gesprochen.\n\nUnd ich habe gemerkt: Die Erwartung ist oft: Suplement = Sofort-Effekt.\n\nAber Zellenergie funktioniert nicht so.\n\nNAD+ ist wie ein Bankkonto. Du kannst nicht von 0 auf 100 gehen. Du sparst konsistent.\n\n8 Wochen. Das ist realistisch.\n\nUnd genau darum liebe ich meine Arbeit — nicht weil ich dir etwas verkaufe, sondern weil ich dir helfe, dein System zu verstehen.\n\nSysteme sind langsam. Aber sie sind sicher.\n\nLasst uns zusammen lange denken.\n\n— Jasmin",
+      "hashtags": [
+        "#AyariPhilosophy",
+        "#Longevity",
+        "#SystemsThinking",
+        "#Nachhaltigkeit",
+        "#AyariLongevity"
+      ],
+      "manychat_keyword": null,
+      "script_lines": null,
+      "thumbnail_prompt": "Lifestyle-Moment: Jasmin sitzt am Fenster mit Kaffee, nachdenklicher Blick raus, natürliches Licht, Buch oder Notizen auf Tisch, authentisch, reflektiv, keine Pose. Farben: Warm, gold, natural light. Brand-Feel: Premium, menschlich, zugänglich.",
+      "needs_jasmin_video": false,
+      "newsletter_topic": null,
+      "posting_time": "18:30",
+      "priority": "medium"
+    }
+  ],
+  "newsletter_subjects": {
+    "wednesday": "Warum Uthever® die einzige NMN-Form ist, die zählt",
+    "saturday": "Die NAD+-Reparatur: Das wissenschaftliche 3-Schritt-System"
+  },
+  "strategic_recommendation": "Diese Woche fokussiert absolut auf NMN+ und NAD+-Bildung. Das ist strategisch smart, weil: (1) NMN+ höchste Differenzierung hat (Uthever®), (2) der Preis-Punkt (€24,99) noch niedrig genug für Conversions ist, (3) Performance/Longevity der Hot-Trend ist. Mit Montag + Freitag Facts Reels baust du Awareness. Mittwoch + Samstag bringst du Education + Newsletter-Growth. Die UGC am Dienstag liefert Social Proof. Donnerstag-Karussell ist pure Save-Optimierung. Sonntag: Brand-Building & Trust. Erwartet: 20-30% höhere Engagement auf NMN+-Keywords, 3-5 Newsletter-Sign-ups über ManyChat LONGEVITY, 2-4 direkte Conversions auf NMN+."
+}

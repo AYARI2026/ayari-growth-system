@@ -1,0 +1,6 @@
+.env
+.env.local
+# reports/weekly/*.json  — keep plan files in repo so n8n can read them
+__pycache__/
+*.pyc
+.DS_Store
