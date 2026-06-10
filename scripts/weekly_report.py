@@ -14,14 +14,6 @@ TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 def get_ig_account_info() -> tuple[str, str]:
     """Returns (ig_user_id, page_access_token)"""
-    url = "https://graph.facebook.com/v21.0/me/accounts"
-    params = {"fields": "access_token,instagram_business_account", "access_token": IG_ACCESS_TOKEN}
-    resp = requests.get(url, params=params, timeout=30)
-    resp.raise_for_status()
-    for page in resp.json().get("data", []):
-        ig = page.get("instagram_business_account")
-        if ig:
-            return ig["id"], page.get("access_token", IG_ACCESS_TOKEN)
     return IG_USER_ID, IG_ACCESS_TOKEN
 
 
