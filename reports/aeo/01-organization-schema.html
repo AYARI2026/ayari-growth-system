@@ -1,0 +1,94 @@
+<!--
+  AYARI Organization Schema
+  WHERE TO ADD: Shopify Admin → Online Store → Themes → Edit code → layout/theme.liquid
+  PASTE: Directly before the closing </head> tag
+  PURPOSE: Tells AI platforms exactly who AYARI is — brand entity recognition
+
+  TO DO BEFORE PASTING:
+  1. Replace YOUR_LOGO_URL with the actual logo URL from your Shopify files
+     (Shopify Admin → Content → Files → find your logo → copy URL)
+  2. Add your Amazon store URL to sameAs if you have one
+  3. Add Trustpilot URL: https://de.trustpilot.com/review/ayari-longevity.de
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AYARI Longevity",
+  "alternateName": "AYARI",
+  "url": "https://ayari-longevity.de",
+  "logo": "YOUR_LOGO_URL",
+  "description": "AYARI Longevity ist eine von Ärzten gegründete Premium-Supplement-Marke aus Deutschland, spezialisiert auf Longevity-Nahrungsergänzungsmittel: NMN, Magnesium Komplex, Vitamin D3 K2, Kreatin, Kollagen, Omega-3 und weitere Präzisionssupplements für Menschen, die länger und besser leben wollen.",
+  "foundingDate": "2023",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Jasmin Ahmari-Yari",
+      "jobTitle": "Ärztin und Gründerin"
+    },
+    {
+      "@type": "Person",
+      "name": "Ramin Yari",
+      "jobTitle": "Co-Gründer"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/ayari.longevity/",
+    "https://www.instagram.com/ayari/"
+  ],
+  "knowsAbout": [
+    "NMN (Nicotinamid-Mononukleotid)",
+    "NAD+ Stoffwechsel",
+    "Longevity Supplements",
+    "Vitamin D3 K2",
+    "Kreatin Monohydrat",
+    "Magnesium Komplex",
+    "Kollagenpeptide",
+    "Omega-3 Fettsäuren EPA DHA",
+    "Curcumin Boswellia",
+    "OPC Ginkgo Biloba",
+    "B-Komplex Vitamine",
+    "Zink Immunsystem",
+    "Maca Adaptogen",
+    "Zellgesundheit und Regeneration",
+    "Longevity Protokolle",
+    "Biohacking Deutschland",
+    "Anti-Aging Supplement Stacks"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DE"
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Deutschland"
+    },
+    {
+      "@type": "Country",
+      "name": "Österreich"
+    },
+    {
+      "@type": "Country",
+      "name": "Schweiz"
+    }
+  ],
+  "slogan": "Where Science Meets The Art Of Longevity",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "AYARI Longevity Supplement Kollektion",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "NMN+ (Zellpower Boost)", "url": "https://ayari-longevity.de/products/nmn-pulver-kaufen"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Magnesium Komplex", "url": "https://ayari-longevity.de/products/magnesium-komplex-kapseln"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Vitamin D3/K2 Tropfen", "url": "https://ayari-longevity.de/products/vitamin-d3-k2-tropfen-kaufen"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Omega-3+", "url": "https://ayari-longevity.de/products/omega-3-kapseln"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Kreatin+", "url": "https://ayari-longevity.de/products/kreatin-pulver-kaufen"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Kollagen+", "url": "https://ayari-longevity.de/products/kollagen-pulver-kaufen"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Curcumin+", "url": "https://ayari-longevity.de/products/curcumin-kapseln-kaufen"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Vitamin C+", "url": "https://ayari-longevity.de/products/vitamin-c-kapseln"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "B-Komplex", "url": "https://ayari-longevity.de/products/b-komplex-kapseln"}}
+    ]
+  }
+}
+</script>

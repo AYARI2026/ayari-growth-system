@@ -24,19 +24,63 @@ Lies zuerst: `data/brand/ayari-products.md` und `data/brand/ayari-master-brand.m
 
 ---
 
+## WOCHENTHEMA PRINZIP
+
+Das Wochenthema ist IMMER ein Gesundheitsthema — niemals nur ein einzelnes Produkt.
+
+Richtig: "Zellenergie & Vitalität"
+Falsch: "NMN+ Woche"
+
+Richtig: "Schlaf & Nervensystem"
+Falsch: "Magnesium Woche"
+
+Hauptprodukt der Woche: erscheint Mi + Do + Sa
+Unterstützende Produkte (1-2): erscheinen Mo + Fr
+Sonntag: Lifestyle/Brand — kein direktes Selling
+
+---
+
+## NEWSLETTER SYNC
+
+Mittwoch-Newsletter (10:00 Uhr):
+→ Thema = Expert Reel Mittwoch, tiefer erklärt
+→ Medizinische Hintergründe, Studien, Jasmin's Meinung
+→ Soft CTA am Ende
+
+Sonntag-Newsletter (09:00 Uhr):
+→ Hauptprodukt der Woche im Fokus
+→ Warum dieses Produkt zu diesem Thema passt
+→ Direkter Link + ManyChat Keyword
+
+KEIN Newsletter am Samstag.
+
+---
+
 ## WOCHENPLAN FORMAT
 
-7 Posts pro Woche:
+| Tag | Format | Job | Newsletter |
+|-----|--------|-----|-----------|
+| Montag | Facts Reel (Spickzettel) | Growth | — |
+| Dienstag | UGC Evergreen | Social Proof | — |
+| Mittwoch | Expert Reel Jasmin | Authority | ✅ Mi |
+| Donnerstag | Karussell | Education + Saves | — |
+| Freitag | Facts Reel (Spickzettel) | Growth | — |
+| Samstag | Conversion Reel Jasmin | Conversion | — |
+| Sonntag | Single Post (Lifestyle) | Brand | ✅ So |
 
-| Tag | Format | Job |
-|-----|--------|-----|
-| Montag | Facts Reel (Spickzettel) | Growth |
-| Dienstag | UGC Evergreen | Social Proof |
-| Mittwoch | Expert Reel Jasmin + Newsletter | Authority |
-| Donnerstag | Karussell | Education + Saves |
-| Freitag | Facts Reel (Spickzettel) | Growth |
-| Samstag | Expert Reel Jasmin + Newsletter | Conversion |
-| Sonntag | Single Post | Brand/Lifestyle |
+---
+
+## SONNTAG SINGLE POST REGEL
+
+Immer: Produkt im Premium-Lifestyle-Kontext.
+Beispiele:
+- Produkt auf Marmor-Tablett mit Morgenkaffee
+- Produkt in Jasmin's Morgen-Setup
+- Flat-lay mit Produkt und saisonalen Elementen
+
+NIEMALS: "Was Jasmin diese Woche gelernt hat"
+NIEMALS: Persönliche Jasmin-Story
+Das gehört zu @ayari — nicht zu @ayari.longevity
 
 ---
 
@@ -85,12 +129,6 @@ ManyChat bei: Mittwoch, Donnerstag, Samstag (immer)
 
 ---
 
-## NEWSLETTER SYNC
-
-- **Mittwoch-Newsletter:** Thema = Expert Reel Mittwoch (tiefer)
-- **Sonntag-Newsletter:** Produkt-Focus + Link
-
----
 
 ## PERFORMANCE PRIORITÄTEN
 
@@ -132,7 +170,10 @@ DM Keyword: CODE
 ## WENN DU EINEN WOCHENPLAN ERSTELLST
 
 Gib immer aus:
-1. **Wochenthema + Produkt** + Begründung
+1. **Wochenthema** (Gesundheitsthema, kein Produkt) + Hauptprodukt der Woche + 1-2 unterstützende Produkte
+   - Hauptprodukt erscheint Mi + Do + Sa
+   - Unterstützende Produkte erscheinen Mo + Fr
+   - Sonntag = Lifestyle/Brand, kein direktes Selling
 2. **Alle 7 Posts** mit: Format | Hook | Text/Skript-Stichpunkte | Caption-Idee | ManyChat-Keyword (wenn relevant)
 3. **Newsletter Betreff** Mittwoch + Sonntag
 4. **Eine strategische Empfehlung** für die Woche

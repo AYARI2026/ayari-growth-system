@@ -11,13 +11,23 @@
 → Telegram: "Here's next week's plan — approve?"
 → You approve → plan is locked
 
-[Daily, 8am] n8n trigger
-→ reads today's post from plan
-→ if AI image needed → calls Higgsfield API
-→ Telegram: preview of post with [✅ POST] [⏭ SKIP] buttons
-→ You tap ✅ → post_publisher.py posts to all platforms
+[Daily, 30 min before target time] n8n trigger
+→ Random wait: 0–60 min (for organic timing)
+→ Reads today's post from plan
+→ Generates content based on type:
+     Jasmin Reel    → waits for video sent to Telegram bot
+     Facts Reel     → Higgsfield generates image
+     Karussell      → Higgsfield generates carousel slides
+     UGC            → Higgsfield Marketing Studio UGC mode
+     Single Post    → Higgsfield generates lifestyle image
+→ ALL content types: Telegram preview sent to you
+→ You tap ✅ → posts to Instagram
+→ You tap ✏️ → edit caption, then post
+→ You tap ⏭  → skip today
 → ManyChat handles all DM responses automatically
 ```
+
+**Rule: Nothing posts without your ✅. No exceptions.**
 
 ---
 
@@ -104,59 +114,76 @@ jobs:
 
 ### Workflow A: Daily Post with Telegram Approval
 
-**Trigger:** Schedule — runs Mon-Sun at 7:30am CET
+**Trigger:** Schedule — runs 60 min before target posting time (from plan JSON)
+**First node after trigger:** Wait node — `{{ Math.floor(Math.random() * 121) }}` minutes
+This creates natural ±60 min variation so posting times never look automated to Meta.
+Example: target time 11:00 → trigger fires at 10:00 → random wait 0–120 min → actual post lands anywhere between 10:00 and 12:00.
+
 **Logic:**
 1. Read today's plan from latest `reports/weekly/plan_*.json`
 2. Find today's post (by date)
-3. If `needs_jasmin_video = true` → check Google Drive for uploaded video
-   - If no video found → skip and send Telegram reminder
-4. If AI image needed → call Higgsfield API with `thumbnail_prompt`
-5. Send Telegram preview:
-   ```
-   📸 @ayari.longevity post heute (Dienstag)
-   Format: Facts Reel
-   Hook: "Das wissen die wenigsten über Magnesium"
-   Caption: [preview...]
-   Bild: [attached image]
+3. Branch by `content_type` + `needs_jasmin_video`:
 
-   [✅ JETZT POSTEN] [⏭ ÜBERSPRINGEN] [✏️ CAPTION ÄNDERN]
+```
+needs_jasmin_video = true  →  Check Telegram bot inbox for today's video
+                               If found: use it
+                               If not found: send reminder → wait 2h → if still missing: skip + notify
+
+content_type = "image"     →  Call Higgsfield API (gpt_image_2) with thumbnail_prompt
+content_type = "carousel"  →  Call Higgsfield API (gpt_image_2) for each slide
+content_type = "ugc"       →  Call Higgsfield Marketing Studio (ugc mode) → see UGC templates
+```
+
+4. Send Telegram preview for **every** content type:
    ```
-6. Wait for Telegram button response
-7. On ✅ → call post_publisher.py → post to Instagram (+Facebook)
-8. Confirm: "✅ Gepostet! Instagram ID: 123456"
+   📸 @ayari.longevity — Mittwoch (Expert Reel)
+   Hook: "Das einzige NMN das in Menschen getestet wurde"
+   Caption: NAD+ kann man nicht direkt supplementieren...
+   [Video / Image attached]
+   Keyword: LONGEVITY
+   ──────────────────────
+   [✅ POSTEN]  [✏️ CAPTION]  [⏭ SKIP]
+   ```
+5. Wait for Telegram button response (timeout: 4h → auto-skip + notify)
+6. On ✅ → call post_publisher.py → post to Instagram (+Facebook)
+7. Confirm: "✅ Gepostet um 11:23 Uhr — Instagram ID: 123456"
 
 **n8n Nodes needed:**
 - Schedule Trigger
-- Read Binary File (read plan JSON)
-- Code Node (JavaScript to find today's post)
-- HTTP Request (Higgsfield API for image)
-- Telegram Send Message
+- Wait Node (random delay expression)
+- Read Binary File (plan JSON)
+- Code Node (JavaScript: find today's post, determine content type)
+- Switch Node (branch by content_type)
+- HTTP Request (Higgsfield API — image / UGC)
+- Telegram Send Message (preview with inline buttons)
 - Telegram Trigger (wait for button click)
-- HTTP Request / Execute Command (call post_publisher.py)
+- IF Node (which button was tapped)
+- HTTP Request / Execute Command (post_publisher.py)
 - Telegram Send Message (confirmation)
 
 ---
 
-### Workflow B: Video Upload Handler
+### Workflow B: Jasmin Video Upload via Telegram
 
-**Trigger:** Google Drive — New file in "AYARI Ready to Post" folder
-**Logic:**
-1. New video file detected in Google Drive
-2. Read filename convention: `YYYY-MM-DD_platform_caption-key.mp4`
-3. Look up caption from weekly plan
-4. Send Telegram preview with video thumbnail
-5. Wait for approval
-6. On approve → download video → post to:
-   - Instagram Reels
-   - TikTok (if TIKTOK_ACCESS_TOKEN set)
-   - Facebook (same video)
-   - YouTube Shorts (Phase 2)
+**How it works:**
+Jasmin films a reel → opens Telegram → sends the video directly to the AYARI bot with a date label.
 
-**File naming convention for videos:**
+**Message format Jasmin uses:**
 ```
-2026-06-02_longevity_magnesium-reel.mp4
-YYYY-MM-DD_channel_description.mp4
+[sends video file]
+Caption: 2026-06-10
 ```
+That's it. Just the date. n8n matches it to that day's post in the plan.
+
+**n8n Logic:**
+1. Telegram Trigger fires when bot receives a video message
+2. Code node: extract date from caption → find matching post in plan JSON
+3. Store video with metadata: `{ date, file_id, matched_post }`
+4. Reply to Jasmin: "✅ Video für Mittwoch 10.6. gespeichert"
+5. Video is ready for Workflow A to pick up at posting time
+
+**Important:** Jasmin sends the video anytime before the posting time — the night before is ideal.
+If no video arrives by 1h before scheduled time → Workflow A sends a reminder to Telegram.
 
 ---
 
@@ -220,6 +247,103 @@ Facts Reels are images not videos. The AI can generate these fully:
 4. Posted via Instagram Image API
 
 For product posts: use existing AYARI product images (already in Shopify CDN).
+
+---
+
+## SAFETY — Anti-Ban & Anti-Penalty Rules
+
+This section protects @ayari.longevity from Instagram action blocks, shadowbans, and domain penalties.
+Every rule here is non-negotiable. n8n must enforce these automatically.
+
+---
+
+### POSTING TIMING RULES
+
+| Rule | Why |
+|---|---|
+| Never post at exact same time two days in a row | Looks like a bot to Meta's detection systems |
+| Random wait: ±60 min from target time | `{{ Math.floor(Math.random() * 121) }}` min after trigger |
+| Never post between 01:00–06:00 CET | Low engagement hour + unusual bot behavior window |
+| Max 1 post per day per account | More than 1/day raises API abuse flags |
+| Minimum 18h between posts | Even with random timing, enforce this as a hard floor |
+
+**n8n enforcement:** Add an IF node before posting that checks: "Was a post published in the last 18 hours?" If yes → skip + send Telegram warning.
+
+---
+
+### HASHTAG RULES
+
+| Rule | Why |
+|---|---|
+| Never use the same exact hashtag set twice in a row | Instagram spam filter flags repeated hashtag blocks |
+| Max 5–8 hashtags per post (not 30) | Mass hashtag use is a shadowban signal since 2023 |
+| Never use banned hashtags | Meta silently reduces reach without notifying you |
+| Rotate hashtag groups — at least 3 different pools | Pool A / Pool B / Pool C — rotate weekly |
+
+**n8n enforcement:** Content plan JSON already generates hashtags per post. Code node should verify no two consecutive posts share more than 3 identical hashtags.
+
+---
+
+### CAPTION RULES
+
+| Rule | Why |
+|---|---|
+| Never post identical captions | Duplicate content = spam signal |
+| Never start a caption with a # or @ | Reduces reach algorithmically |
+| No external URLs in captions | Meta suppresses posts with links — use "link in bio" only |
+
+---
+
+### API & TOKEN RULES
+
+| Rule | Why |
+|---|---|
+| Instagram access token must be refreshed every 45 days | Tokens expire at 60 days — stale token = posting failure |
+| Build a token expiry check + Telegram alert | Silent expiry = days without posts, no warning |
+| Use only official Meta Graph API v18+ | Unofficial or scraping tools = instant permanent ban |
+| Never share IG_ACCESS_TOKEN outside GitHub Secrets | Token theft = account takeover |
+
+**Automated token refresh reminder:**
+Add a monthly cron in n8n:
+- Fires on the 1st of every month
+- Sends Telegram message: "⚠️ Token-Check: IG Access Token läuft in 15 Tagen ab. Jetzt erneuern."
+
+---
+
+### CONTENT QUALITY RULES
+
+| Rule | Why |
+|---|---|
+| Every AI-generated image must pass your Telegram review | Low-quality AI content gets flagged by Meta's classifiers |
+| No watermarks from other tools in images | Copyright flags + quality penalty |
+| Video aspect ratio must be 9:16 for Reels | Wrong ratio = format rejection or poor distribution |
+| Video length: 7–90 seconds for Reels | Outside this window = not eligible for Reels feed |
+| Image resolution: minimum 1080×1080px | Low resolution reduces distribution quality |
+
+---
+
+### DOMAIN RULES (ayari-longevity.de)
+
+| Rule | Why |
+|---|---|
+| Never link to a page that returns 404 | Google penalizes dead links from social traffic |
+| Never publish AI blog content without human review | Google's Helpful Content Update penalizes thin AI text |
+| Instagram bio link must always point to a live page | Meta checks bio links — dead links reduce account trust |
+
+---
+
+### TELEGRAM WARNING TRIGGERS
+
+n8n should send you an automatic Telegram warning when any of these occur:
+
+```
+⚠️ WARNUNG: Posting in den letzten 18h bereits erfolgt — kein Post heute.
+⚠️ WARNUNG: IG Access Token läuft in 15 Tagen ab.
+⚠️ WARNUNG: Letzter Post hatte 0 Saves und 0 Shares — Überprüfe den Content.
+⚠️ WARNUNG: Gleiche Hashtag-Gruppe wie gestern — rotiere zu Pool B/C.
+⚠️ WARNUNG: Kein Video von Jasmin empfangen — Expert Reel heute nicht möglich.
+⚠️ FEHLER: Instagram API returned 400/401 — Token prüfen oder Post fehlgeschlagen.
+```
 
 ---
 
