@@ -8,7 +8,7 @@ import anthropic
 IG_ACCESS_TOKEN = os.environ["IG_ACCESS_TOKEN"]
 IG_USER_ID = os.environ["IG_USER_ID"]
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
+TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID_LONGEVITY_REPORTS"]
 # ANTHROPIC_API_KEY is picked up automatically by the anthropic library
 
 
@@ -30,7 +30,13 @@ def get_recent_posts(days: int = 7) -> tuple[list[dict], str]:
     posts = resp.json().get("data", [])
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
-    recent = [p for p in posts if datetime.fromisoformat(p["timestamp"].replace("Z", "+00:00")) >= cutoff]
+    def _parse_ts(ts: str) -> datetime:
+        ts = ts.replace("Z", "+00:00")
+        if ts[-3] != ":" and (ts[-5] == "+" or ts[-5] == "-"):
+            ts = ts[:-2] + ":" + ts[-2:]
+        return datetime.fromisoformat(ts)
+
+    recent = [p for p in posts if _parse_ts(p["timestamp"]) >= cutoff]
     return recent, page_token
 
 
